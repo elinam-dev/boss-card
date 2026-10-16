@@ -81,15 +81,15 @@ export function MinimalistHero({ person, className }: MinimalistHeroProps) {
 
   return (
     <main className={cn("relative flex min-h-screen w-full flex-col overflow-hidden bg-background px-6 py-7 font-sans sm:px-10 sm:py-9", className)}>
-      <header className="relative z-30 flex w-full max-w-7xl self-center items-center justify-between">
-        <div>
+      <header className="relative z-30 flex w-full max-w-7xl self-center items-start justify-between">
+        <div className="flex-1 max-w-xl">
           <a href="#" className="animate-name-slide-in font-sora text-xl font-bold tracking-wide text-foreground">
             {person.name}
           </a>
-          <span className="animate-title-rise absolute left-0 top-8 text-xs font-medium uppercase tracking-[0.2em] text-foreground/70">
+          <span className="animate-title-rise block mt-2 text-xs font-medium uppercase tracking-[0.2em] text-foreground/70">
             {person.title}
           </span>
-          <div className="mt-14 w-[min(92vw,31rem)]">
+          <div className="mt-10 w-full max-w-md">
             <SpeechBubble text={person.bio} photo="/boss.png" name={person.name} />
           </div>
         </div>
