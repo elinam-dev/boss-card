@@ -89,7 +89,7 @@ export function MinimalistHero({ person, className }: MinimalistHeroProps) {
           <span className="animate-title-rise block mt-2 text-xs font-medium uppercase tracking-[0.2em] text-foreground/70">
             {person.title}
           </span>
-          <div className="mt-10 w-full max-w-md">
+          <div className="mt-10 w-full max-w-[20rem]">
             <SpeechBubble text={person.bio} photo="/boss.png" name={person.name} />
           </div>
         </div>

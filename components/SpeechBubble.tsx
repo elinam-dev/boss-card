@@ -56,12 +56,12 @@ export default function SpeechBubble({ text }: Props) {
     <div className="flex w-full items-center gap-4">
       <div
         aria-label={text}
-        className="bubble-pop relative min-w-0 flex-1 rounded-3xl bg-white px-5 py-3 text-sm leading-relaxed text-[#0A1530] shadow-lg"
+        className="bubble-pop relative min-w-0 max-w-[20rem] rounded-3xl bg-white px-6 py-5 text-sm leading-relaxed text-[#0A1530] shadow-lg"
       >
         <span aria-hidden="true" className="invisible block">
           {text}
         </span>
-        <span aria-hidden="true" className="absolute inset-0 px-4 py-3">
+        <span aria-hidden="true" className="absolute inset-0 px-6 py-5 text-sm leading-relaxed">
           {waiting ? (
             <span className="flex h-full items-center gap-1">
               <i className="dot" />
@@ -75,11 +75,11 @@ export default function SpeechBubble({ text }: Props) {
             </>
           )}
         </span>
-        {/* Thought bubble tail with circles */}
-        <span aria-hidden="true" className="absolute -bottom-5 left-16 flex items-center gap-1.5">
-          <span className="h-3 w-3 rounded-full bg-white shadow-sm" />
-          <span className="h-2 w-2 rounded-full bg-white shadow-sm" />
-          <span className="h-1.5 w-1.5 rounded-full bg-white shadow-sm" />
+        {/* Thought bubble tail with circles connecting to the head (top right) */}
+        <span aria-hidden="true" className="absolute -right-10 top-4 flex items-center gap-1.5">
+          <span className="h-5 w-5 rounded-full bg-white shadow-md animate-thought-1" />
+          <span className="h-4 w-4 rounded-full bg-white shadow-md animate-thought-2" />
+          <span className="h-2.5 w-2.5 rounded-full bg-white shadow-sm animate-thought-3" />
         </span>
       </div>
     </div>
