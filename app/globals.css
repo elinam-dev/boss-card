@@ -1,12 +1,173 @@
 @import "tailwindcss";
 
 @theme inline {
+  --color-background: #E5E7EB;
+  --color-foreground: #0A1530;
   --color-brand: #0B5CB8;
   --color-brand-light: #3B8FE8;
   --color-navy: #0A1530;
 }
 
 body {
-  background-color: var(--color-navy);
-  color: #FFFFFF;
+  background-color: #E5E7EB;
+  color: #0A1530;
+}
+
+.font-sora {
+  font-family: var(--font-sora), sans-serif;
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-left {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes name-slide-in {
+  from { opacity: 0; transform: translateX(-120vw); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes title-rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes meeting-menu-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes meeting-option-in {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: translateY(180px) scale(0.8); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes portrait-rise {
+  from { opacity: 0; transform: translateY(260px) scale(1.25); }
+  to { opacity: 1; transform: translateY(0) scale(1.25); }
+}
+
+@media (min-width: 768px) {
+  @keyframes portrait-rise {
+    from { opacity: 0; transform: translateY(320px) scale(1.5); }
+    to { opacity: 1; transform: translateY(0) scale(1.5); }
+  }
+}
+
+@media (min-width: 1024px) {
+  @keyframes portrait-rise {
+    from { opacity: 0; transform: translateY(360px) scale(1.65); }
+    to { opacity: 1; transform: translateY(0) scale(1.65); }
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 2.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in-left {
+  animation: fade-in-left 1.6s ease-out both;
+}
+
+.animate-name-slide-in {
+  animation: name-slide-in 2.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-title-rise {
+  animation: title-rise 1.6s cubic-bezier(0.22, 1, 0.36, 1) 1.2s both;
+}
+
+.animate-meeting-menu {
+  animation: meeting-menu-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: bottom right;
+}
+
+.animate-meeting-option {
+  animation: meeting-option-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-meeting-option-delayed {
+  animation-delay: 0.08s;
+}
+
+@keyframes partner-label-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-partner-label {
+  animation: partner-label-in 0.25s ease-out both;
+}
+
+.animate-scale-in {
+  animation: scale-in 2.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-portrait {
+  animation: portrait-rise 2s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
+}
+
+@keyframes bubblePop {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.bubble-pop {
+  transform-origin: right center;
+  animation: bubblePop 0.5s cubic-bezier(.2, 1.4, .4, 1) both;
+}
+
+@keyframes dotBounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: .4; }
+  40% { transform: translateY(-4px); opacity: 1; }
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: #0B5CB8;
+  animation: dotBounce 1s infinite;
+}
+
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -2px;
+  background: #0B5CB8;
+  animation: blink .8s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes ring {
+  0% { box-shadow: 0 0 0 0 rgba(59, 143, 232, .7); }
+  100% { box-shadow: 0 0 0 14px rgba(59, 143, 232, 0); }
+}
+
+.speaking-ring {
+  animation: ring 1s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble-pop,
+  .dot,
+  .caret,
+  .speaking-ring {
+    animation: none;
+  }
 }
