@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+@theme inline {
+  --color-brand: #0B5CB8;
+  --color-brand-light: #3B8FE8;
+  --color-navy: #0A1530;
+}
+
+body {
+  background-color: var(--color-navy);
+  color: #FFFFFF;
+}
