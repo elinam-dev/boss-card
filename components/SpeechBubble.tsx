@@ -75,7 +75,7 @@ export default function SpeechBubble({ text }: Props) {
             </>
           )}
         </span>
-        <span aria-hidden="true" className="absolute -right-1.5 top-6 h-4 w-4 rotate-45 bg-white" />
+        <span aria-hidden="true" className="absolute -bottom-1.5 left-20 h-4 w-4 rotate-45 bg-white" />
       </div>
 
     </div>
