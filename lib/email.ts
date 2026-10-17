@@ -1,6 +1,8 @@
 import "server-only";
+import { Resend } from "resend";
 
-const EMAIL_BASE_URL = "https://integrations.emergentagent.com";
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 const CRED_ASK = ["reply with your password", "reply with the code", "send your password", "cvv", "seed phrase", "verify your card", "confirm your bank details"];
 
 export const escapeHtml = (value: string) =>
@@ -22,19 +24,23 @@ function assertSafeEmail(subject: string, html: string) {
 
 export async function sendEmail({ to, subject, html }: { to: string; subject: string; html: string }) {
   assertSafeEmail(subject, html);
-  const res = await fetch(`${EMAIL_BASE_URL}/api/v1/email/send`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "X-Email-Key": process.env.EMERGENT_EMAIL_KEY as string },
-    body: JSON.stringify({ to: [to], subject, html, from_name: process.env.EMAIL_FROM_NAME }),
-  });
-  if (!res.ok) {
-    const data = await res.json().catch(() => ({}));
-    if (["insufficient_credits", "integration_disabled", "daily_limit_reached"].includes(data.code)) {
-      console.warn(`Email paused: ${data.code} (${res.status}): ${data.message ?? ""}`);
-    } else {
-      console.error(`Email send failed: ${res.status} ${JSON.stringify(data)}`);
+  
+  try {
+    const { data, error } = await resend.emails.send({
+      from: `${process.env.EMAIL_FROM_NAME} <${process.env.EMAIL_FROM}>`,
+      to: [to],
+      subject,
+      html,
+    });
+
+    if (error) {
+      console.error('Resend error:', error);
+      return null;
     }
+
+    return data?.id ?? null;
+  } catch (err) {
+    console.error('Email send failed:', err);
     return null;
   }
-  return ((await res.json()) as { id?: string }).id ?? null;
 }
