@@ -1,0 +1,35 @@
+{
+  "summary": "Frontend E2E (Playwright) of Next.js 16 business card at preview URL, desktop 1536x800 + mobile 390x844. All requested features work: hero (name/title/portrait/thought bubble/website pill), partner cycling + hover pause, action dock (vcf download + Saved state, wa.me/tel/mailto hrefs), meeting scheduler (confirm disabled until slot, slot highlight, outside-click close), 6 service cards, 2 office cards with phone/map links, contact form validation + success + send-another reset, Mongo persistence visible in /inbox?key=..., /inbox locked without key or with wrong key. No page errors. Found 2 real UX bugs: form inputs are wiped after a validation error, and the mobile website pill is clipped off-screen.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "ContactForm (components/sections/contact-form.tsx)", "issue": "After a failed validation submit, ALL typed fields are cleared (React 19 <form action> auto-resets uncontrolled inputs). Repro: mobile, fill name 'A', email 'bad@', message 'short', submit -> errors shown but inputs empty. User loses a long message if e.g. email is mistyped. Fix: return submitted values in ContactState and set defaultValue on inputs (keyed on state), or use controlled inputs / onSubmit with startTransition.", "selector": "[data-testid=contact-message-input]", "priority": "HIGH"},
+      {"component": "MinimalistHero header (mobile 390px)", "issue": "website-link pill is clipped off right edge: bounding box x=319,w=105 (ends at 424px > 390 viewport); hidden by hero overflow-hidden so arrow icon is invisible. RCA: hero-title is whitespace-nowrap (279px) and pill is shrink-0, so header content exceeds 366px available. Fix: allow title to wrap / truncate on mobile (e.g. whitespace-normal sm:whitespace-nowrap) or shrink tracking.", "selector": "[data-testid=website-link]", "priority": "MEDIUM"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Meeting scheduler", "issues": ["Uses native browser <input type=date> picker instead of a shadcn Calendar component - inconsistent look", "today computed via new Date().toISOString() (UTC) - for South Africa (UTC+2) between 00:00-02:00 the min date is yesterday; use local date"]},
+      {"screen": "Hero partner grid", "issues": ["Inactive logos at opacity-40 + grayscale are nearly invisible for light logos (Ecodepur, Pioneer, Franklin Electric, Jesco) - consider opacity ~60"]},
+      {"screen": "Mobile hero", "issues": ["'Authorised distributor for' label slightly overlaps bottom of portrait image"]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Preserve contact form field values after validation errors (return values from server action and use defaultValue)",
+    "Fix mobile header so website pill is fully visible at 390px (let hero-title wrap on mobile)",
+    "Optional: replace native date input with shadcn Calendar; compute local today; raise inactive partner logo opacity"
+  ],
+  "critical_code_review_comments": [
+    "contact-form.tsx: useActionState with uncontrolled inputs loses data on error (see ui_bugs)",
+    "actions.ts: no rate limiting/honeypot on public server action - spam can fill contact_messages; consider a hidden honeypot field",
+    "inbox/page.tsx: access key in query string (shows in logs/history); acceptable for MVP but comparison is not constant-time",
+    "calendar-scheduler.tsx: UTC 'today' bug"
+  ],
+  "updated_files": ["/app/test_reports/iteration_1.json"],
+  "success_rate": {"backend": "N/A (no API, server action tested via UI)", "frontend": "~95% (44/46 checks passed)"},
+  "seed_data_creation": "One contact message inserted via UI: name 'TEST_Kwame Boateng', email test_kwame@example.com, company TEST_Co (in flowitec_card.contact_messages).",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "App is Next.js at /app root (no FastAPI). Inbox: /inbox?key=flowitec-inbox-7f3k9q. Verify: form values retained after validation error; mobile website-link bbox right edge <= 390.",
+  "test_credentials": "/app/memory/test_credentials.md missing; inbox key from review request used."
+}

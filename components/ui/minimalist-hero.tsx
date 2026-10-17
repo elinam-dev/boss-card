@@ -14,21 +14,22 @@ export function MinimalistHero({ person }: { person: Person }) {
       <div aria-hidden="true" className="hero-glow" />
 
       <header className="relative z-30 mx-auto flex w-full max-w-7xl items-start justify-between gap-4">
-        <div>
+        <div className="min-w-0">
           <h1 data-testid="hero-name" className="animate-name-slide-in font-sora text-[1.7rem] font-bold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl">
             {person.name}
           </h1>
-          <p data-testid="hero-title" className="animate-title-rise mt-3 flex items-center gap-3 whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground/65 sm:text-xs sm:tracking-[0.25em]">
+          <p data-testid="hero-title" className="animate-title-rise mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground/65 sm:text-xs sm:tracking-[0.25em]">
             <span className="h-px w-6 bg-brand sm:w-8" />
-            {person.title} · {person.company}
+            <span>{person.title}</span>
+            <span className="text-brand">{person.company}</span>
           </p>
         </div>
         <WebsitePill website={person.website} />
       </header>
 
       <section className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 lg:min-h-[calc(100svh-8rem)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_minmax(0,0.9fr)]">
-        <div className="relative z-20 flex flex-col gap-10 pt-8 lg:pt-12">
-          <div className="max-w-md lg:-mr-24 lg:max-w-none">
+        <div className="relative z-20 flex flex-col gap-10 pt-10 lg:pt-24">
+          <div className="max-w-md lg:-mr-10 lg:max-w-none">
             <SpeechBubble text={person.bio} />
           </div>
           <PartnerLabel active={cycle.active} className="hidden lg:block" />
@@ -39,9 +40,11 @@ export function MinimalistHero({ person }: { person: Person }) {
 
         <Portrait name={person.name} title={person.title} />
 
-        <div className="relative z-20 flex flex-col gap-6 pb-32 pt-8 lg:justify-center lg:pb-40 lg:pt-0">
+        <div className="relative z-20 flex flex-col gap-6 pb-32 pt-16 lg:items-end lg:justify-center lg:pb-40 lg:pt-0">
           <PartnerLabel active={cycle.active} className="lg:hidden" />
-          <PartnerGrid {...cycle} />
+          <div className="w-full lg:max-w-[18rem]">
+            <PartnerGrid {...cycle} />
+          </div>
           <p data-testid="hero-tagline" className="hidden font-sora text-sm font-semibold text-brand lg:block">{person.tagline}</p>
         </div>
       </section>
@@ -86,7 +89,7 @@ function Portrait({ name, title }: { name: string; title: string }) {
         height={1086}
         priority
         data-testid="hero-portrait"
-        className="animate-portrait relative z-10 w-[150%] max-w-none translate-x-[6%] object-contain sm:w-[120%] lg:w-[170%] lg:translate-x-[6%]"
+        className="animate-portrait relative z-10 w-[150%] max-w-none translate-x-[6%] object-contain sm:w-[120%] lg:w-[170%]"
       />
     </div>
   );

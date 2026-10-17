@@ -47,7 +47,7 @@ export default function SpeechBubble({ text }: { text: string }) {
     <div
       data-testid="thought-bubble"
       aria-label={text}
-      className="bubble-pop relative w-full rounded-[2rem] rounded-br-lg border border-white/70 bg-white/85 px-6 py-5 font-sora text-[15px] font-medium leading-relaxed text-navy shadow-[0_20px_40px_-12px_rgba(10,21,48,0.22)] backdrop-blur-xl sm:px-7 lg:text-lg"
+      className="bubble-pop relative w-full rounded-[2.5rem] border border-white/70 bg-white/85 px-6 py-5 font-sora text-[15px] font-medium leading-relaxed text-navy shadow-[0_20px_40px_-12px_rgba(10,21,48,0.22)] backdrop-blur-xl sm:px-7 lg:text-lg"
     >
       <span aria-hidden="true" className="invisible block">{text}</span>
       <span aria-hidden="true" className="absolute inset-0 px-6 py-5 sm:px-7">
@@ -64,10 +64,15 @@ export default function SpeechBubble({ text }: { text: string }) {
           </>
         )}
       </span>
-      <span aria-hidden="true" className="absolute -right-12 bottom-2 hidden items-center gap-1.5 sm:flex">
-        <span className="h-5 w-5 rounded-full bg-white/90 shadow-md animate-thought-1" />
-        <span className="h-3.5 w-3.5 rounded-full bg-white/90 shadow-md animate-thought-2" />
-        <span className="h-2 w-2 rounded-full bg-white/90 shadow-sm animate-thought-3" />
+      <span aria-hidden="true" className="absolute bottom-0 right-1/3 sm:hidden">
+        <span className="absolute -bottom-5 right-0 h-4 w-4 rounded-full bg-white/90 shadow-md animate-thought-1" />
+        <span className="absolute -bottom-10 -right-4 h-3 w-3 rounded-full bg-white/90 shadow-md animate-thought-2" />
+        <span className="absolute -bottom-14 -right-7 h-2 w-2 rounded-full bg-white/90 shadow-sm animate-thought-3" />
+      </span>
+      <span aria-hidden="true" data-testid="thought-trail" className="absolute right-6 top-0 hidden sm:block">
+        <span className="absolute -right-6 -top-4 h-6 w-6 rounded-full bg-white/90 shadow-md animate-thought-1" />
+        <span className="absolute -right-12 -top-11 h-4 w-4 rounded-full bg-white/90 shadow-md animate-thought-2" />
+        <span className="absolute -right-[4.25rem] -top-[4.25rem] h-2.5 w-2.5 rounded-full bg-white/90 shadow-sm animate-thought-3" />
       </span>
     </div>
   );

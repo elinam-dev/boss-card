@@ -67,7 +67,7 @@ export function PartnerGrid({ active, setActive, setPaused }: ReturnType<typeof 
               "flex aspect-square items-center justify-center rounded-xl border bg-white p-2 transition-[transform,opacity,filter,box-shadow,border-color] duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-light",
               isActive
                 ? "scale-110 border-brand/40 opacity-100 grayscale-0 shadow-[0_12px_28px_-8px_rgba(11,92,184,0.35)]"
-                : "border-navy/5 opacity-40 grayscale hover:opacity-70",
+                : "border-navy/5 opacity-60 grayscale hover:opacity-80",
             )}
           >
             <Image src={partner.src} alt={partner.name} width={150} height={90} className="max-h-full w-full object-contain mix-blend-multiply" />

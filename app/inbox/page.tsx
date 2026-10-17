@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Inbox | Flowitec", robots: { index: 
 
 type Search = Promise<Record<string, string | string[] | undefined>>;
 
-type Message = { name: string; email: string; phone: string; company: string; message: string; created_at: string };
+type Message = { name: string; email: string; phone: string; company: string; date?: string; time?: string; message: string; created_at: string };
 
 export default function InboxPage({ searchParams }: { searchParams: Search }) {
   return (
@@ -44,6 +44,7 @@ async function Messages({ searchParams }: { searchParams: Search }) {
             <time className="text-xs text-foreground/50">{new Date(m.created_at).toLocaleString("en-GB")}</time>
           </div>
           <p className="mt-1 text-sm text-brand"><a href={`mailto:${m.email}`}>{m.email}</a>{m.phone && ` · ${m.phone}`}</p>
+          {m.date && <p data-testid="inbox-item-meeting" className="mt-2 inline-block rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold text-brand">Meeting: {m.date}{m.time && ` at ${m.time}`}</p>}
           <p className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-foreground/75">{m.message}</p>
         </li>
       ))}

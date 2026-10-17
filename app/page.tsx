@@ -14,7 +14,7 @@ export default function Home() {
       <Offices person={PERSON} />
       <ContactSection person={PERSON} />
       <SiteFooter person={PERSON} />
-      <ActionDock person={PERSON} />
+      <ActionDock />
     </>
   );
 }

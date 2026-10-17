@@ -13,12 +13,12 @@ export function ContactSection({ person }: { person: Person }) {
     <section id="contact" data-testid="contact-section" className="relative overflow-hidden px-6 pb-24 sm:px-10 lg:pb-32">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 rounded-[2.5rem] bg-white/50 p-6 ring-1 ring-white/70 sm:p-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:p-16">
         <div className="reveal">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand">Get in touch</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand">Book a meeting</p>
           <h2 className="mt-4 font-sora text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-            Facing downtime? Let&apos;s solve it.
+            Facing downtime? Let&apos;s meet and solve it.
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-foreground/65">
-            Tell me about your pumps, valves, motors or process challenge. I&apos;ll come back with a practical, engineered solution.
+            Pick a date and time that suits you and tell me about your pumps, valves, motors or process challenge. I&apos;ll confirm the meeting by email.
           </p>
           <ul className="mt-10 space-y-3">
             {channels.map(({ icon: Icon, label, value, href }) => (
