@@ -74,7 +74,7 @@ function Portrait({ name, title }: { name: string; title: string }) {
   return (
     <div className="relative flex min-h-[360px] items-end justify-center sm:min-h-[520px] lg:min-h-0">
       <Image
-        src="/logo1.png"
+        src="/logo1-clean.png"
         alt=""
         aria-hidden="true"
         width={700}
