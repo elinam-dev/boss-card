@@ -21,6 +21,8 @@ The preview runner /app/frontend/package.json runs `next dev` from the root.
 - Clickable map pins and country buttons that open an office card (company, address, phones, email, maps link) for all 4 Flowitec offices (lib/offices.ts)
 - Booking email alerts to ALERT_EMAIL (godwin.asamoah@flowitec.com), sent through the Emergent managed email proxy (lib/email.ts, lib/booking-alert.ts) after the response using after(). Env: EMERGENT_EMAIL_KEY, EMAIL_FROM_NAME. Limit of 5 bookings per IP per hour.
 
+- The Africa map is now a collapsible panel: it opens on mouse hover and closes on leave (tap to toggle on touch). The "Where to find us" Offices section was removed.
+
 ## Backlog
 - P1: Calendar invite (.ics) or Google Calendar booking
 - P2: Testimonials and case studies; QR code for the card; social links
