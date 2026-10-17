@@ -15,6 +15,8 @@ interface MapProps {
   dotColor?: string;
   backgroundColor?: string;
   className?: string;
+  activeLabel?: string;
+  onPointClick?: (label: string) => void;
 }
 
 export function WorldMap({
@@ -23,6 +25,8 @@ export function WorldMap({
   dotColor,
   backgroundColor,
   className,
+  activeLabel,
+  onPointClick,
 }: MapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const { theme } = useTheme();
@@ -99,8 +103,23 @@ export function WorldMap({
           <g key={`points-group-${i}`}>
             {[dot.start, dot.end].map((point, j) => {
               const { x, y } = projectPoint(point.lat, point.lng);
+              const label = point.label;
+              const clickable = Boolean(onPointClick && label);
               return (
-                <g key={`${j === 0 ? "start" : "end"}-${i}`}>
+                <g
+                  key={`${j === 0 ? "start" : "end"}-${i}`}
+                  role={clickable ? "button" : undefined}
+                  tabIndex={clickable ? 0 : undefined}
+                  aria-label={clickable ? `Show ${label} office` : undefined}
+                  data-testid={clickable ? `map-pin-${label!.toLowerCase().replace(/\s+/g, "-")}-${i}-${j}` : undefined}
+                  onClick={clickable ? () => onPointClick!(label!) : undefined}
+                  onKeyDown={clickable ? (e) => (e.key === "Enter" || e.key === " ") && onPointClick!(label!) : undefined}
+                  style={clickable ? { pointerEvents: "auto", cursor: "pointer", outline: "none" } : undefined}
+                >
+                  {clickable && <circle cx={x} cy={y} r="9" fill="transparent" />}
+                  {label && activeLabel === label && (
+                    <circle cx={x} cy={y} r="4.5" fill="none" stroke={lineColor} strokeWidth="1" />
+                  )}
                   <circle cx={x} cy={y} r="2" fill={lineColor} />
                   <circle cx={x} cy={y} r="2" fill={lineColor} opacity="0.5">
                     <animate attributeName="r" from="2" to="8" dur="1.5s" begin="0s" repeatCount="indefinite" />

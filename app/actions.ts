@@ -1,6 +1,9 @@
 "use server";
 
+import { after } from "next/server";
+import { headers } from "next/headers";
 import { getDb } from "@/lib/db";
+import { sendBookingAlert } from "@/lib/booking-alert";
 
 type Field = "name" | "email" | "phone" | "company" | "date" | "time" | "message";
 
@@ -37,12 +40,26 @@ export async function submitContact(prev: ContactState, formData: FormData): Pro
     return { status: "error", attempt, errors, values: data, message: "Please check the highlighted fields." };
   }
 
+  const ip = ((await headers()).get("x-forwarded-for") ?? "").split(",")[0].trim() || "unknown";
   try {
     const db = await getDb();
-    await db.collection("contact_messages").insertOne({ ...data, created_at: new Date().toISOString() });
+    const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+    const recent = await db.collection("contact_messages").countDocuments({ ip, created_at: { $gte: since } });
+    if (recent >= 5) {
+      return { status: "error", attempt, values: data, message: "Too many requests from your network. Please try again later or email directly." };
+    }
+    await db.collection("contact_messages").insertOne({ ...data, ip, created_at: new Date().toISOString() });
   } catch {
     return { status: "error", attempt, values: data, message: "Your request couldn't be sent right now. Please try email instead." };
   }
+
+  after(async () => {
+    try {
+      await sendBookingAlert(data);
+    } catch (err) {
+      console.error("Booking alert failed", err);
+    }
+  });
 
   const when = data.date ? ` for ${data.date}${data.time ? ` at ${data.time}` : ""}` : "";
   return { status: "success", attempt, message: `Thanks ${data.name.split(" ")[0]}, your meeting request${when} is in. I'll confirm by email shortly.` };
