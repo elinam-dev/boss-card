@@ -15,6 +15,9 @@ The preview runner /app/frontend/package.json runs `next dev` from the root.
 - Form validation that keeps typed values and focuses the first invalid field; success state; data saved to Mongo
 - Private inbox at /inbox?key=INBOX_KEY
 
+- Removed TM sign from the Flowitec logos (logo1-clean.png, logo-clean.png)
+- Replaced the "What I solve" heading and stats with a WorldMap (components/ui/world-map.tsx; dotted-map, framer-motion, next-themes) zoomed on Africa. Arcs run from the Ghana HQ to Nigeria (Lagos), Kenya (Nairobi) and South Africa (Johannesburg), using countries from flowitec.com/contact. The map is client-only to keep the HTML small.
+
 ## Backlog
 - P1: Email notifications for new booking requests (Resend or SendGrid)
 - P1: Calendar invite (.ics) or Google Calendar booking

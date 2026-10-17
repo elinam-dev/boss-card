@@ -1,4 +1,5 @@
 import { Cog, Droplets, Gauge, SlidersHorizontal, Wrench, Zap, type LucideIcon } from "lucide-react";
+import { PresenceMap } from "@/components/sections/presence-map";
 import type { Person } from "@/lib/person";
 
 const DETAILS: Record<string, { icon: LucideIcon; text: string }> = {
@@ -14,19 +15,7 @@ export function Services({ person }: { person: Person }) {
   return (
     <section id="services" data-testid="services-section" className="relative bg-navy px-6 py-24 text-white sm:px-10 lg:py-32">
       <div className="mx-auto max-w-7xl">
-        <div className="reveal flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-light">What I solve</p>
-            <h2 className="mt-4 font-sora text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-              Rotating &amp; static equipment, kept running.
-            </h2>
-          </div>
-          <dl className="grid grid-cols-3 gap-8 border-t border-white/10 pt-6 lg:border-0 lg:pt-0">
-            <Stat value={String(person.services.length)} label="Product lines" />
-            <Stat value="10" label="Partner brands" />
-            <Stat value={String(person.addresses.length)} label="Offices" />
-          </dl>
-        </div>
+        <PresenceMap />
 
         <ul className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-3xl bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
           {person.services.map((service, i) => {
@@ -45,15 +34,5 @@ export function Services({ person }: { person: Person }) {
         </ul>
       </div>
     </section>
-  );
-}
-
-function Stat({ value, label }: { value: string; label: string }) {
-  return (
-    <div>
-      <dt className="sr-only">{label}</dt>
-      <dd className="font-sora text-3xl font-bold text-white lg:text-4xl">{value}</dd>
-      <dd className="mt-1 text-xs text-white/50">{label}</dd>
-    </div>
   );
 }
