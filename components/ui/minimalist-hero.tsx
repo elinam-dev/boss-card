@@ -40,7 +40,7 @@ export function MinimalistHero({ person }: { person: Person }) {
 
         <Portrait name={person.name} title={person.title} />
 
-        <div className="relative z-20 flex flex-col gap-6 pb-32 pt-16 lg:items-end lg:justify-center lg:pb-40 lg:pt-0">
+        <div className="relative z-20 flex flex-col gap-6 pb-32 pt-16 lg:items-end lg:justify-center lg:pb-40 lg:pt-56">
           <PartnerLabel active={cycle.active} className="lg:hidden" />
           <div className="w-full lg:max-w-[18rem]">
             <PartnerGrid {...cycle} />
