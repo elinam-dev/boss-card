@@ -17,6 +17,10 @@ function ContactFormInner({ onReset }: { onReset: () => void }) {
   const [state, action, pending] = useActionState(submitContact, initial);
   const [today, setToday] = useState<string>();
   useEffect(() => setToday(new Date().toLocaleDateString("en-CA")), []);
+  useEffect(() => {
+    const first = state.errors && Object.keys(state.errors)[0];
+    if (first) document.querySelector<HTMLElement>(`[data-testid="contact-${first}-input"]`)?.focus();
+  }, [state.attempt, state.errors]);
 
   if (state.status === "success") {
     return (

@@ -29,7 +29,7 @@ export function MinimalistHero({ person }: { person: Person }) {
 
       <section className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 lg:min-h-[calc(100svh-8rem)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_minmax(0,0.9fr)]">
         <div className="relative z-20 flex flex-col gap-10 pt-10 lg:pt-24">
-          <div className="max-w-md lg:-mr-10 lg:max-w-none">
+          <div className="max-w-md lg:max-w-none">
             <SpeechBubble text={person.bio} />
           </div>
           <PartnerLabel active={cycle.active} className="hidden lg:block" />
