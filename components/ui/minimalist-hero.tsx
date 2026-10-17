@@ -34,7 +34,7 @@ export function MinimalistHero({ person }: { person: Person }) {
           </div>
           <PartnerLabel active={cycle.active} className="hidden lg:block" />
           <p className="hidden items-center gap-2 text-sm font-medium text-foreground/60 lg:flex">
-            <MapPin className="h-4 w-4 text-brand" /> {person.location} · {person.addresses.map((a) => a.label).join(" & ")}
+            <MapPin className="h-4 w-4 text-brand" /> {person.location}
           </p>
         </div>
 
