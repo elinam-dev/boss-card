@@ -17,6 +17,38 @@ body {
   font-family: var(--font-sora), sans-serif;
 }
 
+::selection {
+  background: #0B5CB8;
+  color: #fff;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(40rem 30rem at 58% 62%, rgba(59, 143, 232, 0.18), transparent 70%),
+    radial-gradient(30rem 24rem at 8% 10%, rgba(255, 255, 255, 0.7), transparent 70%);
+}
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: fade-in-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 25%;
+  }
+}
+
 @keyframes fade-in-up {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }

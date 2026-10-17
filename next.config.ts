@@ -1,9 +1,16 @@
 import type { NextConfig } from "next";
 
+const previewHosts = ["**.preview.emergentagent.com", "**.emergentagent.com", "**.preview.emergentcf.cloud"];
+
 const nextConfig: NextConfig = {
-  /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
+  allowedDevOrigins: previewHosts,
+  experimental: {
+    serverActions: {
+      allowedOrigins: previewHosts,
+    },
+  },
   turbopack: {
     rules: {
       "*.css": {

@@ -1,0 +1,7 @@
+{
+  "name": "preview-runner",
+  "private": true,
+  "scripts": {
+    "start": "cd .. && npx next dev -H 0.0.0.0 -p 3000"
+  }
+}

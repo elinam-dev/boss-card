@@ -1,0 +1,158 @@
+{
+  "typography": {
+    "headings": {
+      "family": "Sora, sans-serif",
+      "weights": ["600", "700", "800"],
+      "tracking": "tracking-tight",
+      "sizes": {
+        "h1": "text-4xl sm:text-5xl lg:text-6xl",
+        "h2": "text-2xl sm:text-3xl lg:text-4xl",
+        "h3": "text-xl sm:text-2xl"
+      }
+    },
+    "body": {
+      "family": "Inter, sans-serif",
+      "weights": ["400", "500"],
+      "leading": "leading-relaxed",
+      "sizes": {
+        "base": "text-base",
+        "small": "text-sm",
+        "micro": "text-xs"
+      }
+    },
+    "labels": {
+      "style": "uppercase tracking-[0.2em] text-xs font-semibold"
+    }
+  },
+  "colors": {
+    "background": {
+      "primary": "#E5E7EB",
+      "surface": "#FFFFFF",
+      "surface_alt": "#F3F4F6",
+      "overlay": "rgba(10, 21, 48, 0.4)"
+    },
+    "text": {
+      "primary": "#0A1530",
+      "secondary": "#4B5563",
+      "inverse": "#FFFFFF",
+      "accent": "#0B5CB8"
+    },
+    "brand": {
+      "navy": "#0A1530",
+      "blue": "#0B5CB8",
+      "light_blue": "#3B8FE8"
+    },
+    "status": {
+      "success": "#10B981",
+      "error": "#EF4444"
+    }
+  },
+  "visual_enhancers": {
+    "shadows": {
+      "soft": "shadow-[0_4px_20px_-4px_rgba(10,21,48,0.08)]",
+      "hover": "shadow-[0_8px_30px_-4px_rgba(10,21,48,0.12)]",
+      "floating": "shadow-[0_20px_40px_-8px_rgba(10,21,48,0.15)]"
+    },
+    "borders": {
+      "subtle": "border border-gray-200/60",
+      "active": "border border-[#0B5CB8]"
+    },
+    "radii": {
+      "card": "rounded-2xl",
+      "pill": "rounded-full",
+      "button": "rounded-xl",
+      "bubble": "rounded-[2rem] rounded-tl-sm"
+    },
+    "glass": "backdrop-blur-xl bg-white/70 border border-white/40"
+  },
+  "grids_and_layouts": {
+    "philosophy": "Mobile-first digital business card. Generous padding, high-density actionable areas, optical alignment.",
+    "spacing_scale": "p-4, p-6, p-8, p-12",
+    "hero_composition": {
+      "layout": "relative min-h-[90vh] flex flex-col items-center overflow-hidden pt-12 pb-24",
+      "boss_portrait": "absolute bottom-0 z-10 w-full max-w-md",
+      "logo_background": "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 max-w-sm opacity-20 blur-sm",
+      "thought_bubble": "absolute top-24 right-4 md:right-12 z-20 max-w-[280px] bg-white p-4 shadow-floating",
+      "partner_logos": "absolute left-4 bottom-32 z-20 flex flex-col gap-2"
+    },
+    "sections": {
+      "services": "grid grid-cols-1 md:grid-cols-2 gap-4 px-4 py-12",
+      "contact_form": "max-w-lg mx-auto w-full px-4 py-12",
+      "offices": "grid grid-cols-1 md:grid-cols-2 gap-6 px-4 py-12"
+    }
+  },
+  "motion": {
+    "entrance": {
+      "slide_up": "transition-transform duration-700 ease-out translate-y-0 starting:translate-y-12 opacity-100 starting:opacity-0",
+      "fade_in": "transition-opacity duration-500 ease-in opacity-100 starting:opacity-0"
+    },
+    "interactions": {
+      "hover_lift": "transition-all duration-300 hover:-translate-y-1 hover:shadow-hover",
+      "button_press": "active:scale-95 transition-transform duration-150"
+    },
+    "specific_animations": {
+      "typing_bubble": "Typewriter effect for the bio text inside the thought bubble",
+      "logo_cycle": "Smooth crossfade between partner logos, 1 highlighted at a time",
+      "boss_rise": "Portrait rises from bottom on initial load"
+    }
+  },
+  "accessibility": {
+    "contrast": "Ensure white text on #0B5CB8 meets AA standards. Use #0A1530 for primary text on #E5E7EB.",
+    "focus": "focus:ring-2 focus:ring-[#3B8FE8] focus:ring-offset-2 focus:outline-none",
+    "motion": "Respect prefers-reduced-motion for the typing effect and slider."
+  },
+  "components": [
+    {
+      "name": "HeroSection",
+      "description": "Full-screen compositional hero with rising portrait, typing thought bubble, and background logo."
+    },
+    {
+      "name": "ActionPills",
+      "description": "Floating or bottom-anchored horizontal scroll list of quick actions (vCard, WhatsApp, Call, Email)."
+    },
+    {
+      "name": "PartnerLogos",
+      "description": "Cycling grayscale logos with active item highlighted (colored or full opacity)."
+    },
+    {
+      "name": "ContactForm",
+      "description": "Working form saving to DB. Name, Email, Phone, Company, Message. Includes success state."
+    },
+    {
+      "name": "OfficeCard",
+      "description": "Address card with map link, using glassmorphism or soft shadow on white surface."
+    }
+  ],
+  "image_urls": {
+    "boss_portrait": {
+      "url": "/boss.png",
+      "description": "Large cutout portrait rising in front"
+    },
+    "flowitec_logo": {
+      "url": "/logo1.png",
+      "description": "Circular background logo"
+    }
+  },
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic outputs. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Don't make generic centered layouts. Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur) for floating elements like the thought bubble and action pills.",
+    "You MUST NOT apply universal transition. Eg: transition: all. Always add transitions for specific properties.",
+    "You MUST NOT center align the app container. This disrupts the human natural reading flow of text.",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations.",
+    "NEVER use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯 etc for icons. Use lucide-react.",
+    "Every interaction needs micro-animations - hover states, transitions, and entrance animations.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "All interactive and key informational elements MUST include a data-testid attribute."
+  ],
+  "instructions_to_main_agent": {
+    "1": "Retain the original concept (Hero composition, thought bubble, partner logos). Enhance it by applying the defined typography, color scales, and soft shadows.",
+    "2": "For the thought bubble, use a distinct custom shape (rounded-2xl with a sharp corner pointing to the portrait) and implement a typewriter effect for the bio.",
+    "3": "The bottom action pills should be sticky or fixed at the bottom for easy mobile access, using a glassmorphic background to not obscure the portrait.",
+    "4": "Build a responsive Contact Form section below the hero. Use pure HTML/Tailwind for layout and React state for submission handling. Add a success state.",
+    "5": "Implement the 'Services' and 'Offices' sections as clean, well-spaced cards below the hero. Use lucide-react icons for visual anchors.",
+    "6": "Partner logos should be in a grid or stack, visually cycling through them. Grayscale inactive, full color/opacity active.",
+    "7": "Use plain React with Tailwind CSS v4. No Shadcn or external UI libraries are strictly required, but lucide-react is permitted for icons.",
+    "8": "Ensure data-testid attributes are present on all buttons, forms, and inputs."
+  }
+}

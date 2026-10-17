@@ -14,8 +14,9 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: "[NAME] | [TITLE], [COMPANY]",
-  description: "Connect with [NAME] - [TITLE] at [COMPANY]. Get in touch for [services/expertise].",
+  title: "Ing. Godwin Asamoah | Technical Director, Flowitec",
+  description:
+    "Connect with Ing. Godwin Asamoah, Technical Director at Flowitec. Pumps, valves, electric motors, actuators, controls and spares across Africa. Solving rotating and static engineering problems to reduce downtime.",
 };
 
 export const viewport: Viewport = {
@@ -27,7 +28,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" className="h-full scroll-smooth antialiased">
       <body className={`${inter.className} ${sora.variable} min-h-full flex flex-col`}>
         {children}
       </body>

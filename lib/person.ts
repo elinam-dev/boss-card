@@ -44,5 +44,7 @@ export const PERSON = {
   ],
   
   // Social links (empty for now - can be added later)
-  social: [],
+  social: [] as Array<{ platform: string; url: string }>,
 };
+
+export type Person = typeof PERSON;
