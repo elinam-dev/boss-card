@@ -116,7 +116,7 @@ export function WorldMap({
                   onKeyDown={clickable ? (e) => (e.key === "Enter" || e.key === " ") && onPointClick!(label!) : undefined}
                   style={clickable ? { pointerEvents: "auto", cursor: "pointer", outline: "none" } : undefined}
                 >
-                  {clickable && <circle cx={x} cy={y} r="9" fill="transparent" />}
+                  {clickable && <circle cx={x} cy={y} r="6" fill="transparent" />}
                   {label && activeLabel === label && (
                     <circle cx={x} cy={y} r="4.5" fill="none" stroke={lineColor} strokeWidth="1" />
                   )}

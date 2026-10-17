@@ -23,7 +23,7 @@ export function PresenceMap() {
         <div className="absolute inset-0 origin-[55.3%_62%] scale-[1.9]">
           <WorldMap dots={dots} lineColor="#3B8FE8" dotColor="#FFFFFF55" backgroundColor="transparent" className="h-full" activeLabel={active} onPointClick={setActive} />
         </div>
-        <p className="pointer-events-none absolute left-5 top-4 hidden text-[11px] sm:block font-semibold uppercase tracking-[0.2em] text-white/40">Tap a pin to see the office</p>
+        <p className="pointer-events-none absolute left-5 top-4 hidden rounded-full bg-navy/80 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/70 backdrop-blur sm:block">Tap a pin to see the office</p>
         <OfficeCard office={office} className="absolute bottom-5 right-5 hidden w-[22rem] lg:block" />
       </div>
 

@@ -18,7 +18,9 @@ The preview runner /app/frontend/package.json runs `next dev` from the root.
 - Removed TM sign from the Flowitec logos (logo1-clean.png, logo-clean.png)
 - Replaced the "What I solve" heading and stats with a WorldMap (components/ui/world-map.tsx; dotted-map, framer-motion, next-themes) zoomed on Africa. Arcs run from the Ghana HQ to Nigeria (Lagos), Kenya (Nairobi) and South Africa (Johannesburg), using countries from flowitec.com/contact. The map is client-only to keep the HTML small.
 
+- Clickable map pins and country buttons that open an office card (company, address, phones, email, maps link) for all 4 Flowitec offices (lib/offices.ts)
+- Booking email alerts to ALERT_EMAIL (godwin.asamoah@flowitec.com), sent through the Emergent managed email proxy (lib/email.ts, lib/booking-alert.ts) after the response using after(). Env: EMERGENT_EMAIL_KEY, EMAIL_FROM_NAME. Limit of 5 bookings per IP per hour.
+
 ## Backlog
-- P1: Email notifications for new booking requests (Resend or SendGrid)
 - P1: Calendar invite (.ics) or Google Calendar booking
 - P2: Testimonials and case studies; QR code for the card; social links

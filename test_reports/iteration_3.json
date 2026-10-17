@@ -1,0 +1,30 @@
+{
+  "summary": "Iteration 3 frontend E2E (Playwright, 1920x1080 and 390x844) plus a log check. Everything requested works. presence-map renders the Africa-zoomed world map with 4 country buttons. The default card shows Ghana HQ (3 tel: links, mailto:sales@flowitec.com). Clicking each country button switches the card to the correct company, email and phones (Nigeria +2349036982710 / salesng@, Kenya sales.ke@, SA (Pty) Ltd sales.za@), sets aria-pressed=true and gives an Open in Maps link to maps.google.com with target=_blank. Map pins kenya-1-1, nigeria-0-1, south-africa-2-1 and ghana-0-0 switch the card with a forced click; the Kenya pin also works with a normal click (not blocked by anything on top). The active pin shows the ring circle. On desktop the card sits over the map at the bottom right (map 320-1600 x 194-763, card x=1228-1580, y=422-743), and it does not cover any pin. On mobile only one card shows, below the country buttons (y=387 > 371), with no horizontal scroll. book-meeting-btn scrolls #contact to the top (23px) and focuses contact-name-input. I sent ONE valid booking (TEST_Kofi Mensah / test_kofi@example.com): contact-success showed, the message was saved and appears in the inbox. Frontend logs have no 'Email send failed', 'Booking alert failed' or 'Email paused' lines after the submit. No page errors.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Presence map, mobile 390px", "issues": ["Map pins are only about 15x15px tap targets, and the Ghana and Nigeria pins almost sit on top of each other (x 170 vs 178), so tapping a pin on a phone is hard. The country buttons make up for it, but you could hide the tap hint or enlarge the hit area on mobile."]},
+      {"screen": "Presence map, desktop", "issues": ["The Ghana and Nigeria pin hit areas (r=9, about 48px) overlap by about 20px, so a click between them can pick the wrong country.", "The 'Tap a pin to see the office' hint (text-white/40) sits on top of the dotted map and is hard to read."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Optional: make mobile pin hit areas bigger or separate them better; improve the contrast of the tap-hint text",
+    "Optional: render the Ghana HQ start point once instead of once per arc (see code review)"
+  ],
+  "critical_code_review_comments": [
+    "world-map.tsx: the HQ start point is drawn once for each arc, giving 3 stacked focusable role=button elements for Ghana (map-pin-ghana-0-0/1-0/2-0). Keyboard users tab through Ghana 3 times and screen readers hear 'Show Ghana office' 3 times. Remove the duplicate points before rendering.",
+    "lib/email.ts assertSafeEmail checks the HTML that contains the visitor's message. If a visitor writes e.g. 'send your password' or 'CVV' in a real inquiry, it throws, and the alert to Godwin is silently dropped (only 'Booking alert failed' is logged). Consider running the credential-phrase check only on the template, not on user content.",
+    "sendEmail does not log anything on success. A delivery can only be inferred from missing errors; logging the returned id would help with debugging.",
+    "actions.ts rate limit uses the first x-forwarded-for value, which the client can spoof (carried over)."
+  ],
+  "updated_files": ["/app/test_reports/iteration_3.json"],
+  "success_rate": {"backend": "N/A", "frontend": "100% of requested checks"},
+  "seed_data_creation": "One booking sent: TEST_Kofi Mensah / test_kofi@example.com / TEST Co (no date). This triggered one real alert email to ALERT_EMAIL.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Next.js 16 app at /app. Presence map is client-only (wait about 3s after scrolling to it). Two office-detail-card elements exist (desktop overlay lg:block and mobile lg:hidden), so use :visible. Do not send many bookings: real emails go out and there is a 5/hour/IP rate limit. Iteration 3 already used 1 submission.",
+  "test_credentials": "Inbox: /inbox?key=flowitec-inbox-7f3k9q (from /app/memory/test_credentials.md)"
+}
